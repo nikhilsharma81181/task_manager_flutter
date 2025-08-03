@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/di/service_locator.dart';
+import 'core/di/task_providers.dart';
 import 'core/themes/app_theme.dart';
 import 'features/tasks/presentation/pages/home_page.dart';
 
@@ -11,8 +12,15 @@ void main() async {
   await serviceLocator.init();
 
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    ProviderScope(
+      child: Consumer(
+        builder: (context, ref, child) {
+          // Initialize sync service on app start
+          final syncService = ref.read(syncServiceProvider);
+          syncService.initialize();
+          return const MyApp();
+        },
+      ),
     ),
   );
 }
