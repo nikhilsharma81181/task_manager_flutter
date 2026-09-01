@@ -1,10 +1,19 @@
-# Flutter Task Manager - Developer Documentation
+# Flutter Task Manager
 
-## Overview
+An offline-first task manager that re-prioritises your tasks by learning from how you actually work. Flutter, clean architecture, Riverpod, SQLite.
 
-This Flutter application implements a sophisticated task management system with intelligent priority automation and robust offline capabilities. Built as a showcase of production-ready Flutter development practices, it demonstrates advanced architectural patterns while maintaining clean, maintainable code.
+Every write lands in local SQLite first and syncs in the background, so the app is fully usable with no network. A local analytics engine watches completion patterns and adjusts task priority automatically, with no external AI service and no data leaving the device.
 
-The application serves as a comprehensive example of modern Flutter development, incorporating offline-first design principles, reactive state management, and user behavior analytics to create an intelligent task prioritization system.
+**Highlights**
+
+- Offline-first: SQLite is the source of truth, not a cache
+- Background sync with eventual consistency and conflict handling
+- Behaviour-driven priority scoring (due-date proximity, completion history, user patterns)
+- Clean Architecture with a strict domain/data/presentation split
+- Riverpod `AsyncNotifier` with optimistic updates
+- Integration tests and coverage reporting
+
+Further reading: [ARCHITECTURE.md](ARCHITECTURE.md) and [DEVELOPER_DOCUMENTATION.md](DEVELOPER_DOCUMENTATION.md).
 
 ## Architecture Overview & Key Decisions
 
@@ -44,7 +53,7 @@ We selected Riverpod's AsyncNotifier for complex state scenarios, enabling autom
 
 1. **Clone and Install Dependencies**
    ```
-   git clone [repository-url]
+   git clone https://github.com/nikhilsharma81181/task_manager_flutter.git
    cd task_manager_flutter
    flutter pub get
    ```
